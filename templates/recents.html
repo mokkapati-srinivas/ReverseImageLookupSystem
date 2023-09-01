@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Result page</title>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <link rel="stylesheet" href="/static/styles/styles.css">
+
+</head>
+<body>
+<div class="container_main">
+    <br><br>
+    <div class="nav_bar">
+        <ul>
+            <li class="logout button_search" style="font-size: 15px;"><a href="{{url_for('index')}}">Upload New Image</a></li>
+            <li class="logout button_search" style="font-size: 15px;"><a href="{{url_for('logout')}}">Logout {{current_user.username}} &nbsp; &nbsp;</a></li>
+        </ul>
+    </div>
+    
+    <div class="logo_result"><img src="/static/images/logoForApp.png" alt="Google Logo"></div>
+
+    <div class="row">
+        <h1 style="text-align: center;">Recent images</h1>
+
+        <hr>
+        <!-- Iterate through images -->
+        {% for image_name in recents %}
+        <div class="col-lg-1 col-md-4 col-xs-6 thumb" >
+            <br>
+            <div>
+                <img style="padding-left: 30px;" class="img-responsive" src=" {{url_for('send_image', filename=image_name)}}" width="100px" height="100px">
+                <form id="recent_for" action="{{ url_for('recentResult') }}" method="POST" enctype="multipart/form-data">
+                    <input type="text" name="img_name" value="{{image_name}}" hidden>
+                    <input style="align-self: auto;" type="submit" value="{{image_name}}">
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+</body>
+</html>

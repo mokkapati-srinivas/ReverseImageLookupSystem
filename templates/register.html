@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Result page</title>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <link rel="stylesheet" href="/static/styles/styles.css">
+
+</head>
+<body>
+    <div class="container_main">
+        <div class="logo_result"><img src="/static/images/logoForApp.png" alt="Google Logo"></div>
+        <h1>Register</h1>
+        <div class="container_buttons_search">
+            <form id="upload-form" method="POST" enctype="multipart/form-data">
+                <div class='container form-group'>
+                    {% for error in form.username.errors %}
+                    <p>{{error}}</p>
+                    {% endfor %}
+                    {{ form.hidden_tag()}}
+                    {{ form.username }}
+                    <br><br><br>
+                    {{ form.password }}
+                    <br><br><br>
+                    {{ form.submit }}
+                </div>
+            </form>
+            
+            <a class="choose_file button_search" href="{{url_for('login')}}">Have an account? Login</a>
+        </div>
+    </div>
+</body>
+</html>
